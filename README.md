@@ -29,19 +29,27 @@ Use this project as a prototype or learning exercise to understand microcontroll
 ## Hardware required
 - 1 × Arduino Uno (or compatible)
 - 1 × 16x2 I2C LCD (or 16x2 parallel LCD + appropriate wiring)
-- 1+ × Ultrasonic sensor(s) (HC-SR04) OR Infrared proximity sensors (one per spot)
+- 1+ × sensors (one per spot)
 - 1 × Buzzer (optional)
 - LEDs and resistors for indicators (optional)
+- Servo motor SG-90 
 - Breadboard and jumper wires
 - USB cable for programming the Arduino
 - (Optional) Power supply if not using USB
 
 ## Wiring / Circuit
-Example using one HC-SR04 per spot:
-- HC-SR04 VCC → 5V
-- HC-SR04 GND → GND
-- HC-SR04 TRIG → Arduino digital pin (e.g., D2)
-- HC-SR04 ECHO → Arduino digital pin (e.g., D3) — use voltage divider if needed for 5V tolerant boards
+IR SENSOR 1 VCC-5V
+GND
+OUT-D2
+
+IR SENSOR 2-VCC-5V
+GND
+OUTPUT-D3
+
+SERVO MOTOR -SG90
+VCC-5V
+GND
+OUTPUT-D4
 
 LCD (I2C) example:
 - LCD SDA → A4 (on Uno)
@@ -49,14 +57,9 @@ LCD (I2C) example:
 - LCD VCC → 5V
 - LCD GND → GND
 
-If using multiple sensors, assign distinct TRIG/ECHO pins for each sensor.
-
-(Would be good to add a visual circuit diagram here — e.g., a Fritzing image.)
-
 ## Software
 - Arduino IDE (1.8.x or 2.x) or PlatformIO
-- Libraries (if using I2C LCD): `LiquidCrystal_I2C` or `LiquidCrystal` (for parallel)
-- If using ultrasonic sensors, the code will measure distance and apply a threshold to determine occupancy.
+- Libraries (if using I2C LCD): `LiquidCrystal_I2C` or `LiquidCrystal` (for 
 
 ## Installation & Upload
 1. Install Arduino IDE: https://www.arduino.cc/en/software
@@ -66,10 +69,6 @@ If using multiple sensors, assign distinct TRIG/ECHO pins for each sensor.
 4. Connect your Arduino via USB.
 5. Select the correct board and port in Tools → Board / Port.
 6. Click Upload.
-
-Example threshold logic:
-- If measured distance < 20 cm → spot is occupied
-- Else → spot is free
 
 ## Usage / Testing
 - Power the system and place the sensors above parking spots.
